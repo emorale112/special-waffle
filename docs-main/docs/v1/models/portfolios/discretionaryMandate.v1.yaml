@@ -1,0 +1,22 @@
+title: Discretionary Mandate
+type: object
+description: 'Represents a Discretionary Mandate, with a model.'
+x-examples:
+  discretionary-mandate-example:
+    type: DiscretionaryMandate
+    modelId: mdl-1
+properties:
+  type:
+    type: string
+    description: Type of portfolio mandate. Must be DiscretionaryMandate.
+    enum:
+      - DiscretionaryMandate
+  modelId:
+    type: string
+    description: ID of the Model to use for the mandate.
+    example: mdl-1
+required:
+  - type
+  - modelId
+x-tags:
+  - Portfolios

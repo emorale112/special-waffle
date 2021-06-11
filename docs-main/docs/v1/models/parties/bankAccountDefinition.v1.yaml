@@ -1,0 +1,38 @@
+description: Models a bank account. Bank Accounts that are added to a Party will become the new nominated bank account
+type: object
+title: Bank Account Definition
+properties:
+  clientReference:
+    type:
+      - string
+      - 'null'
+    minLength: 1
+    description: Can be populated with your own reference.
+    example: 1944a59713
+  name:
+    type: string
+    minLength: 1
+    description: Name of the bank account's owner as it appears on the bank statement.
+    maxLength: 50
+    example: C Kent & L Lane
+  number:
+    type: string
+    description: Bank account number. Must be a valid bank account number.
+    pattern: '^[0-9]{8}$'
+    example: '87654321'
+  sortCode:
+    type: string
+    minLength: 1
+    description: Bank account sort code. Must be a valid sort code.
+    pattern: '^[0-9]{2}-[0-9]{2}-[0-9]{2}$'
+    example: 65-43-21
+required:
+  - name
+  - number
+  - sortCode
+x-examples:
+  bank-account-definition-example:
+    clientReference: 1944a59713
+    name: C Kent & L Lane
+    number: '87654321'
+    sortCode: 65-43-21

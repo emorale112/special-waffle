@@ -1,0 +1,12 @@
+type: string
+title: Portfolio Status
+description: Status of a Portfolio
+enum:
+  - Created
+  - Active
+  - Closing
+  - Closed
+x-examples:
+  portfolio-status-example: Active
+x-tags:
+  - Portfolios

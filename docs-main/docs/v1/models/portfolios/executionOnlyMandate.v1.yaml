@@ -1,0 +1,15 @@
+title: Execution Only Mandate
+type: object
+description: Represents an execution only mandate.
+properties:
+  type:
+    type: string
+    description: Type of portfolio mandate. Must be ExecutionOnlyMandate.
+    example: ExecutionOnlyMandate
+    enum:
+      - ExecutionOnlyMandate
+x-examples:
+  execution-only-mandate-example:
+    type: ExecutionOnlyMandate
+x-tags:
+  - Portfolios

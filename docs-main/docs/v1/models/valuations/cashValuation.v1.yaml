@@ -1,0 +1,31 @@
+description: Cash portion of a Valuation
+type: object
+x-examples:
+  gbp-cash-valuation-example:
+    currency: GBP
+    value:
+      currency: GBP
+      amount: 9.17
+    amount:
+      currency: GBP
+      amount: 9.17
+    fxRate: 1
+properties:
+  currency:
+    type: string
+    minLength: 3
+    example: GBP
+    maxLength: 3
+    pattern: '^[A-Z]'
+    description: Base currency of the cash valuation.
+  value:
+    $ref: ../shared/money.v1.yaml
+  amount:
+    $ref: ../shared/money.v1.yaml
+  fxRate:
+    type: number
+    format: double
+    example: 1
+title: Cash Valuation
+x-tags:
+  - Valuations

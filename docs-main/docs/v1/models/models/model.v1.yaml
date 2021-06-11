@@ -1,0 +1,38 @@
+description: Models are the asset allocation for discretionary portfolios that determine the weightings of securities in the portfolio.
+type: object
+title: Model
+properties:
+  id:
+    type: string
+    minLength: 1
+    example: mdl-1
+    description: Unique identifier of the model.
+  name:
+    type: string
+    minLength: 1
+    description: Name of the model.
+    example: Conservative Model
+  description:
+    type: string
+    minLength: 1
+    description: Description of the model.
+    example: Mostly bonds
+  components:
+    type: array
+    uniqueItems: true
+    minItems: 1
+    description: 'Model components, the sum of the weights will always be 1.'
+    items:
+      $ref: ./modelComponent.v1.yaml
+x-examples:
+  model-example:
+    id: mdl-1
+    name: Conservative Model
+    description: Mostly bonds
+    components:
+      - isin: IE00B95W7137
+        weight: 0.75
+      - isin: GB00BZ82ZT69
+        weight: 0.25
+x-tags:
+  - Models

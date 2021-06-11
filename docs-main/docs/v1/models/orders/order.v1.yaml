@@ -1,0 +1,68 @@
+description: Orders are instructions to buy or sell holdings in a portfolio.
+type: object
+title: Order
+x-tags:
+  - Orders
+properties:
+  id:
+    type: string
+    minLength: 1
+    maxLength: 50
+    description: Unique identifier of the order.
+    example: ord-32q2dek3j263q4
+  clientReference:
+    type: string
+    minLength: 1
+    description: 'Your unique reference, if applicable.'
+    example: 4783sghdsk483
+  portfolioId:
+    type: string
+    minLength: 1
+    description: Unique identifier of the portfolio the order belongs to.
+    example: prt-32q2deogu225ps
+    maxLength: 50
+  isin:
+    type: string
+    description: ISIN for this order.
+    example: GB0030029069
+  settlementCurrency:
+    type: string
+    description: Currency the order was settled in
+    minLength: 3
+    maxLength: 3
+    pattern: '^[A-Z]'
+  side:
+    $ref: ./orderSide.v1.yaml
+  consideration:
+    oneOf:
+      - $ref: ../shared/money.v1.yaml
+      - type: 'null'
+    description: Cash amount the order was for. Will not be present is `quantity` is present.
+  quantity:
+    type:
+      - number
+      - 'null'
+    format: double
+    description: Quantity of the order. Will not be present is `consideration` is present.
+    example: 5.1
+  status:
+    $ref: ./orderStatus.v1.yaml
+  reason:
+    type:
+      - string
+      - 'null'
+    description: Will be populated with the reason an order was rejected.
+    example: Example rejection reason
+  receivedAt:
+    type: string
+    minLength: 1
+    format: date-time
+    description: Timestamp the order was created at.
+    example: '2019-10-08T13:55:16.42.37925Z'
+  fills:
+    type: array
+    uniqueItems: true
+    minItems: 1
+    description: An array of fills.
+    items:
+      $ref: ./fill.v1.yaml

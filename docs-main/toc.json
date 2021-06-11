@@ -1,0 +1,276 @@
+{
+  "items": [
+    {
+      "type": "item",
+      "title": "test",
+      "uri": "docs/test.md"
+    },
+    {
+      "type": "divider",
+      "title": "help"
+    },
+    {
+      "type": "item",
+      "title": "Actions",
+      "uri": "docs/help/Actions.md"
+    },
+    {
+      "type": "item",
+      "title": "Authentication",
+      "uri": "docs/help/Authentication.md"
+    },
+    {
+      "type": "item",
+      "title": "Available Identifier Types",
+      "uri": "docs/help/AvailableIdentifierTypes.md"
+    },
+    {
+      "type": "item",
+      "title": "Changelog",
+      "uri": "docs/help/Changelog.md"
+    },
+    {
+      "type": "item",
+      "title": "Getting Started",
+      "uri": "docs/help/GettingStarted.md"
+    },
+    {
+      "type": "item",
+      "title": "Idempotent Requests",
+      "uri": "docs/help/Idempotency.md"
+    },
+    {
+      "type": "item",
+      "title": "Introduction",
+      "uri": "docs/help/Introduction.md"
+    },
+    {
+      "type": "item",
+      "title": "Pagination",
+      "uri": "docs/help/Pagination.md"
+    },
+    {
+      "type": "divider",
+      "title": "APIS"
+    },
+    {
+      "type": "item",
+      "title": "WealthKernel API",
+      "uri": "docs/v1/gateway.v1.yaml"
+    },
+    {
+      "type": "divider",
+      "title": "Schemas"
+    },
+    {
+      "type": "item",
+      "title": "Address",
+      "uri": "docs/v1/models/parties/address.v1.yaml"
+    },
+    {
+      "type": "item",
+      "title": "Address Definition",
+      "uri": "docs/v1/models/parties/addressDefinition.v1.yaml"
+    },
+    {
+      "type": "item",
+      "title": "Bank Account",
+      "uri": "docs/v1/models/parties/bankAccount.v1.yaml"
+    },
+    {
+      "type": "item",
+      "title": "Bank Account Definition",
+      "uri": "docs/v1/models/parties/bankAccountDefinition.v1.yaml"
+    },
+    {
+      "type": "item",
+      "title": "Bank Account Status",
+      "uri": "docs/v1/models/parties/bankAccountStatus.v1.yaml"
+    },
+    {
+      "type": "item",
+      "title": "Cash Valuation",
+      "uri": "docs/v1/models/valuations/cashValuation.v1.yaml"
+    },
+    {
+      "type": "item",
+      "title": "Deposit",
+      "uri": "docs/v1/models/deposits/deposit.v1.yaml"
+    },
+    {
+      "type": "item",
+      "title": "Deposit Definition",
+      "uri": "docs/v1/models/deposits/depositDefinition.v1.yaml"
+    },
+    {
+      "type": "item",
+      "title": "Deposit Status",
+      "uri": "docs/v1/models/deposits/depositStatus.v1.yaml"
+    },
+    {
+      "type": "item",
+      "title": "Discretionary Mandate",
+      "uri": "docs/v1/models/portfolios/discretionaryMandate.v1.yaml"
+    },
+    {
+      "type": "item",
+      "title": "Execution Only Mandate",
+      "uri": "docs/v1/models/portfolios/executionOnlyMandate.v1.yaml"
+    },
+    {
+      "type": "item",
+      "title": "Fill",
+      "uri": "docs/v1/models/orders/fill.v1.yaml"
+    },
+    {
+      "type": "item",
+      "title": "Fill Status",
+      "uri": "docs/v1/models/orders/fillStatus.v1.yaml"
+    },
+    {
+      "type": "item",
+      "title": "Holding Valuation",
+      "uri": "docs/v1/models/valuations/holdingValuation.v1.yaml"
+    },
+    {
+      "type": "item",
+      "title": "Identifier",
+      "uri": "docs/v1/models/parties/identifier.v1.yaml"
+    },
+    {
+      "type": "item",
+      "title": "Model",
+      "uri": "docs/v1/models/models/model.v1.yaml"
+    },
+    {
+      "type": "item",
+      "title": "Model Component",
+      "uri": "docs/v1/models/models/modelComponent.v1.yaml"
+    },
+    {
+      "type": "item",
+      "title": "Money",
+      "uri": "docs/v1/models/shared/money.v1.yaml"
+    },
+    {
+      "type": "item",
+      "title": "Null Mandate",
+      "uri": "docs/v1/models/portfolios/nullMandate.v1.yaml"
+    },
+    {
+      "type": "item",
+      "title": "Order",
+      "uri": "docs/v1/models/orders/order.v1.yaml"
+    },
+    {
+      "type": "item",
+      "title": "Order Definition",
+      "uri": "docs/v1/models/orders/orderDefinition.v1.yaml"
+    },
+    {
+      "type": "item",
+      "title": "Order Side",
+      "uri": "docs/v1/models/orders/orderSide.v1.yaml"
+    },
+    {
+      "type": "item",
+      "title": "Order Status",
+      "uri": "docs/v1/models/orders/orderStatus.v1.yaml"
+    },
+    {
+      "type": "item",
+      "title": "Party",
+      "uri": "docs/v1/models/parties/party.v1.yaml"
+    },
+    {
+      "type": "item",
+      "title": "Party Definition",
+      "uri": "docs/v1/models/parties/partyDefinition.v1.yaml"
+    },
+    {
+      "type": "item",
+      "title": "Party Patch Definition",
+      "uri": "docs/v1/models/parties/partyPatchDefinition.v1.yaml"
+    },
+    {
+      "type": "item",
+      "title": "Party Status",
+      "uri": "docs/v1/models/parties/partyStatus.v1.yaml"
+    },
+    {
+      "type": "item",
+      "title": "Performance Interval",
+      "uri": "docs/v1/models/performance/performanceInterval.v1.yaml"
+    },
+    {
+      "type": "item",
+      "title": "Portfolio",
+      "uri": "docs/v1/models/portfolios/portfolio.v1.yaml"
+    },
+    {
+      "type": "item",
+      "title": "Portfolio Definition",
+      "uri": "docs/v1/models/portfolios/portfolioDefinition.v1.yaml"
+    },
+    {
+      "type": "item",
+      "title": "Portfolio Status",
+      "uri": "docs/v1/models/portfolios/portfolioStatus.v1.yaml"
+    },
+    {
+      "type": "item",
+      "title": "Portfolio Wrapper Type",
+      "uri": "docs/v1/models/portfolios/portfolioWrapperType.v1.yaml"
+    },
+    {
+      "type": "item",
+      "title": "Reference",
+      "uri": "docs/v1/models/shared/reference.v1.yaml"
+    },
+    {
+      "type": "item",
+      "title": "Single Product Mandate",
+      "uri": "docs/v1/models/portfolios/singleProductMandate.v1.yaml"
+    },
+    {
+      "type": "item",
+      "title": "Transaction",
+      "uri": "docs/v1/models/ledgers/transaction.v1.yaml"
+    },
+    {
+      "type": "item",
+      "title": "Transaction Status",
+      "uri": "docs/v1/models/ledgers/transactionStatus.v1.yaml"
+    },
+    {
+      "type": "item",
+      "title": "Transaction Type",
+      "uri": "docs/v1/models/ledgers/transactionType.v1.yaml"
+    },
+    {
+      "type": "item",
+      "title": "Valuation",
+      "uri": "docs/v1/models/valuations/valuation.v1.yaml"
+    },
+    {
+      "type": "item",
+      "title": "Withdrawal",
+      "uri": "docs/v1/models/withdrawals/withdrawal.v1.yaml"
+    },
+    {
+      "type": "item",
+      "title": "Withdrawal Definition",
+      "uri": "docs/v1/models/withdrawals/withdrawalDefinition.v1.yaml"
+    },
+    {
+      "type": "item",
+      "title": "Withdrawal Status",
+      "uri": "docs/v1/models/withdrawals/withdrawalStatus.v1.yaml"
+    },
+    {
+      "type": "item",
+      "title": "Withdrawal Type",
+      "uri": "docs/v1/models/withdrawals/withdrawalType.v1.yaml"
+    }
+  ]
+}

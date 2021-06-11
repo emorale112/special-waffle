@@ -1,0 +1,16 @@
+title: Single Product Mandate
+type: object
+description: 'Represents a single product mandate, with an ISIN for the product.'
+properties:
+  type:
+    type: string
+    description: Type of portfolio mandate. Must be SingleProductMandate.
+    example: SingleProductMandate
+    enum:
+      - SingleProductMandate
+  isin:
+    type: string
+    description: ISIN of portfolio mandate.
+    example: GB0030029069
+x-tags:
+  - Portfolios

@@ -1,0 +1,72 @@
+description: Portfolios are the containers for a party's cash and investments.
+type: object
+title: Portfolio
+x-tags:
+  - Portfolios
+x-examples:
+  portfolio-gia-example:
+    id: prt-32q2deogu225ps
+    partyId: pty-32q2dek2z223q4
+    clientReference: 5c6759ff36
+    name: General Investment Account
+    status: Created
+    wrapperType: GIA
+    currency: GBP
+    mandate:
+      type: NullMandate
+    createdAt: '2019-10-08T13:55:16.4237925Z'
+properties:
+  id:
+    type: string
+    minLength: 1
+    description: Unique identifier of the portfolio.
+    maxLength: 50
+    example: prt-32q2deogu225ps
+  partyId:
+    type: string
+    minLength: 1
+    description: Unique identifier of the party the portfolio belongs to.
+    example: pty-32q2dek2z223q4
+    maxLength: 50
+  clientReference:
+    type: string
+    description: 'Your unique reference, if applicable.'
+    example: 5c6759ff36
+    maxLength: 50
+  name:
+    type: string
+    minLength: 1
+    description: Name of the portfolio.
+    maxLength: 100
+    example: Individual Savings Account
+  status:
+    $ref: ./portfolioStatus.v1.yaml
+  wrapperType:
+    $ref: ./portfolioWrapperType.v1.yaml
+  currency:
+    type: string
+    description: Base currency of the portfolio.
+    minLength: 3
+    maxLength: 3
+    pattern: '^[A-Z]'
+    example: GBP
+  mandate:
+    description: Portfolio mandate.
+    oneOf:
+      - $ref: ./nullMandate.v1.yaml
+      - $ref: ./executionOnlyMandate.v1.yaml
+      - $ref: ./discretionaryMandate.v1.yaml
+      - $ref: ./singleProductMandate.v1.yaml
+    discriminator:
+      propertyName: type
+      mapping:
+        NullMandate: ./nullMandate.v1.yaml
+        ExecutionOnlyMandate: ./executionOnlyMandate.v1.yaml
+        DiscretionaryMandate: ./discretionaryMandate.v1.yaml
+        SingleProductMandate: ./singleProductMandate.v1.yaml
+  createdAt:
+    type: string
+    minLength: 1
+    description: Timestamp portfolio was created at.
+    format: date-time
+    example: '2019-10-08T13:55:16.4237925Z'

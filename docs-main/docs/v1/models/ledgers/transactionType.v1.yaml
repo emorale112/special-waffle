@@ -1,0 +1,21 @@
+type: string
+title: Transaction Type
+description: Type of the transaction.
+enum:
+  - Buy
+  - Sell
+  - Deposit
+  - Withdrawal
+  - Charge
+  - Dividend
+  - FxIn
+  - FxOut
+  - InternalCashTransferIn
+  - InternalCashTransferOut
+  - InternalTransferIn
+  - InternalTransferOut
+  - TransferIn
+  - TransferOut
+  - Redemption
+x-examples:
+  transaction-type-example: Buy

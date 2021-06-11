@@ -1,0 +1,35 @@
+description: |-
+  Model for creating a new Deposit.
+
+  Here is another update to my Github Repo
+type: object
+title: Deposit Definition
+properties:
+  portfolioId:
+    type: string
+    minLength: 1
+    description: Unique identifier of the portfolio the deposit belongs to.
+    maxLength: 50
+    example: prt-32q2deogu225ps
+  useDefaultAccount:
+    type: boolean
+    description: 'When set to `true`, the default bank account for the party that owns the portfolio will be used.'
+  accountId:
+    type: string
+    minLength: 1
+    description: Unique identifier of the bank account the deposit will come from. Will be ignored if `useDefaultAccount` is set to `true`.
+    example: bac-32q2dek3j263q4
+    maxLength: 50
+  consideration:
+    $ref: ../shared/money.v1.yaml
+  reference:
+    type: string
+    minLength: 1
+    description: Reference that will accompany the deposit.
+    example: 32Q2DEOGU225PS
+    maxLength: 50
+required:
+  - portfolioId
+  - useDefaultAccount
+  - consideration
+  - reference

@@ -1,0 +1,10 @@
+type: string
+title: Order Side
+description: Side of an Order
+enum:
+  - Buy
+  - Sell
+x-examples:
+  order-side-example: Buy
+x-tags:
+  - Orders

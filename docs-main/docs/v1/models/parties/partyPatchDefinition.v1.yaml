@@ -1,0 +1,102 @@
+description: 'Model to patch a Party. Please note that passing a null value for a field is treated the same as not passing a value, so the field will not be updated.'
+type: object
+title: Party Patch Definition
+x-examples:
+  patch-example:
+    clientReference: zyx12w48z7
+    title: Mr
+    forename: Clark
+    middlename: Joseph
+    surname: Kent
+    previousSurname: Kal-El
+    emailAddress: email@example.com
+    telephoneNumber: +44 7911123456
+    dateOfBirth: '1938-04-18'
+    dateOfDeath: '1992-11-21'
+    countryOfBirth: GB
+properties:
+  clientReference:
+    type:
+      - string
+      - 'null'
+    minLength: 1
+    description: Can be populated with your own reference.
+    example: zyx12w48z7
+    maxLength: 50
+  title:
+    type:
+      - string
+      - 'null'
+    description: 'Title of the party (Mr, Mrs...).'
+    maxLength: 10
+    example: Mr
+    minLength: 1
+  forename:
+    type:
+      - string
+      - 'null'
+    minLength: 1
+    description: Forename of the party.
+    maxLength: 50
+    example: Clark
+  middlename:
+    type:
+      - string
+      - 'null'
+    minLength: 1
+    description: 'Middle name of the party, if applicable.'
+    maxLength: 50
+    example: Joseph
+  surname:
+    type:
+      - string
+      - 'null'
+    minLength: 1
+    description: Surname of the party.
+    maxLength: 50
+    example: Kent
+  previousSurname:
+    type:
+      - string
+      - 'null'
+    description: 'Previous surname of the party, if applicable.'
+    minLength: 1
+    maxLength: 50
+    example: Kal-El
+  emailAddress:
+    type:
+      - string
+      - 'null'
+    minLength: 1
+    description: Email address of the party.
+    maxLength: 350
+    example: email@example.com
+  telephoneNumber:
+    type:
+      - string
+      - 'null'
+    description: 'Contact telephone number of the party, if applicable. '
+    pattern: '^(\+?)([0-9 ]{11,13})$'
+    example: +44 7911123456
+  dateOfBirth:
+    type:
+      - string
+      - 'null'
+    description: Date of birth of the party.
+    format: date
+    example: '1938-04-18'
+  dateOfDeath:
+    type:
+      - string
+      - 'null'
+    description: Date of death of the party.
+    format: date
+    example: '1992-11-21'
+  countryOfBirth:
+    type:
+      - string
+      - 'null'
+    description: Country of birth of the party. Must be ISO3166 two-letter country code.
+    maxLength: 2
+    minLength: 2
+    pattern: '^[A-Z]'

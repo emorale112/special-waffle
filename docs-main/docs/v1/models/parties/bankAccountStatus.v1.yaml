@@ -1,0 +1,11 @@
+type: string
+title: Bank Account Status
+description: Status of the bank account.
+enum:
+  - Created
+  - Suspended
+  - Active
+  - Inactive
+example: Active
+x-tags:
+  - Parties

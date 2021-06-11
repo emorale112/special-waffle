@@ -1,0 +1,13 @@
+type: string
+title: Withdrawal Status
+description: Status of the withdrawal
+enum:
+  - Pending
+  - Active
+  - Settled
+  - Cancelling
+  - Cancelled
+  - Rejected
+x-examples:
+  withdrawal-status-example: Settled
+example: Settled

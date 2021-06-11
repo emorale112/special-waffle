@@ -1,0 +1,64 @@
+description: Day-to-day calculations of cash and holding balances for a portfolio.
+type: object
+x-examples:
+  valuation-example:
+    portfolioId: string
+    date: string
+    value:
+      currency: string
+      amount: 0
+    cash:
+      - currency: string
+        value:
+          currency: string
+          amount: 0
+        amount:
+          currency: string
+          amount: 0
+        fxRate: 0
+    holdings:
+      - isin: string
+        quantity: 0
+        price:
+          currency: string
+          amount: 0
+        value:
+          currency: string
+          amount: 0
+        fxRate: 0
+    changedAt: string
+properties:
+  portfolioId:
+    type: string
+    minLength: 1
+    example: prt-32q2deogu225ps
+    maxLength: 50
+    description: Unique identifier of the portfolio the valuation belongs to.
+  date:
+    type: string
+    format: date
+    example: '2019-10-08'
+    description: Date of the valuation.
+  value:
+    $ref: ../shared/money.v1.yaml
+  cash:
+    type: array
+    uniqueItems: true
+    description: Cash valuations.
+    items:
+      $ref: ./cashValuation.v1.yaml
+  holdings:
+    type: array
+    uniqueItems: true
+    description: Holdings valuations.
+    items:
+      $ref: ./holdingValuation.v1.yaml
+  changedAt:
+    type: string
+    minLength: 1
+    format: date-time
+    example: '2019-10-08T13:55:4237925Z'
+    description: Timestamp valuation was changed at.
+title: Valuation
+x-tags:
+  - Valuations

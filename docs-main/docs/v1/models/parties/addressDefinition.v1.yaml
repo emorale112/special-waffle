@@ -1,0 +1,79 @@
+description: Models a new address to add to a Party. Adding a new address will set it as the current address of the Party
+type: object
+title: Address Definition
+properties:
+  clientReference:
+    type:
+      - string
+      - 'null'
+    minLength: 1
+    description: Can be populated with your own reference.
+    maxLength: 50
+    example: 5ac94f4d98
+  houseName:
+    type:
+      - string
+      - 'null'
+    description: 'House name, if applicable. Must be populated if houseNumber is empty.'
+    minLength: 1
+    maxLength: 100
+    example: Kent Farm
+  houseNumber:
+    type:
+      - string
+      - 'null'
+    minLength: 1
+    description: 'House number, if applicable. Must be populated if houseName is empty.'
+    maxLength: 10
+    example: '1'
+  line1:
+    type: string
+    minLength: 1
+    description: First line of the address.
+    maxLength: 100
+    example: Road Lane
+  line2:
+    type:
+      - string
+      - 'null'
+    description: Second line of the address.
+    minLength: 1
+    maxLength: 100
+  line3:
+    type:
+      - string
+      - 'null'
+    description: Third line of the address.
+    minLength: 1
+    maxLength: 100
+  city:
+    type: string
+    minLength: 1
+    description: City.
+    maxLength: 100
+    example: Smallville
+  county:
+    type:
+      - string
+      - 'null'
+    description: County.
+    minLength: 1
+    maxLength: 100
+  countryCode:
+    type: string
+    minLength: 2
+    description: Country. Must be ISO3166 two-letter country code.
+    maxLength: 2
+    pattern: '^[A-Z]'
+    example: GB
+  postcode:
+    type: string
+    minLength: 1
+    description: Postcode.
+    pattern: '^[A-Z]{1,2}[0-9R][0-9A-Z]?\s?[0-9][ABD-HJLNP-UW-Z]{2}$'
+    example: S1 1AA
+required:
+  - line1
+  - city
+  - countryCode
+  - postcode

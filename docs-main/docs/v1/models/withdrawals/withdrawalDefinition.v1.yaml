@@ -1,0 +1,40 @@
+description: Model for creating a withdrawal. Please note that consideration is ignored when type is Full.
+type: object
+title: Withdrawal Definition
+properties:
+  type:
+    $ref: ./withdrawalType.v1.yaml
+  portfolioId:
+    type: string
+    minLength: 1
+    description: Unique identifier of the portfolio the withdrawal belongs to.
+    maxLength: 50
+    example: prt-32q2deogu225ps
+  bankAccountId:
+    type: string
+    minLength: 1
+    description: 'Unique identifier of the bank account the withdrawal should go to. When not set or `null`, the party''s default bank account will be used.'
+    maxLength: 50
+    example: bac-32q2dek3j263q4
+  consideration:
+    $ref: ../shared/money.v1.yaml
+  reference:
+    type: string
+    minLength: 1
+    description: Reference that will accompany the withdrawal.
+    maxLength: 50
+    example: 32Q2DEOGU225PS
+required:
+  - type
+  - portfolioId
+  - consideration
+  - reference
+x-examples:
+  withdrawal-definition-example:
+    type: SpecifiedAmount
+    portfolioId: prt-32q2deogu225ps
+    bankAccountId: bac-32q2dek3j263q4
+    consideration:
+      currency: GBP
+      amount: 100
+    reference: 32Q2DEOGU225PS

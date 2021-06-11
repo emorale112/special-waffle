@@ -1,0 +1,16 @@
+description: Component of a Model
+type: object
+title: Model Component
+properties:
+  isin:
+    type: string
+    description: ISIN for this model component.
+    example: IE00B95W7137
+  weight:
+    type: number
+    description: Percentage weighting in the model as a decimal.
+    format: double
+    example: 0.25
+    maximum: 1
+x-tags:
+  - Models

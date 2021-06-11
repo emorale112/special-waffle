@@ -1,0 +1,97 @@
+description: An address that is attached to a Party
+type: object
+title: Address
+x-examples:
+  address-example:
+    id: add-32q2dek3j223q4
+    clientReference: ee4fc6ba50
+    default: true
+    houseName: Kent Farm
+    houseNumber: '1'
+    line1: Main Street
+    line2: string
+    line3: string
+    city: Metropolis
+    county: West Midlands
+    countryCode: GB
+    postcode: M1 1AA
+x-tags:
+  - Parties
+properties:
+  id:
+    type: string
+    minLength: 1
+    description: Unique identifier of the address.
+    example: add-32q2dek3j223q4
+  clientReference:
+    type:
+      - string
+      - 'null'
+    description: 'Your unique reference, if applicable.'
+    maxLength: 50
+    example: ee4fc6ba50
+  default:
+    type: boolean
+    description: Indicates whether this is the party's current address.
+  houseName:
+    type:
+      - string
+      - 'null'
+    description: House name.
+    maxLength: 100
+    minLength: 0
+    example: Kent Farm
+  houseNumber:
+    type:
+      - string
+      - 'null'
+    minLength: 0
+    description: House number.
+    maxLength: 10
+    example: '1'
+  line1:
+    type: string
+    description: First line of the address.
+    maxLength: 100
+    minLength: 1
+    example: Main Street
+  line2:
+    type:
+      - string
+      - 'null'
+    description: Second line of the address.
+    minLength: 0
+    maxLength: 100
+  line3:
+    type:
+      - string
+      - 'null'
+    description: Third line of the address.
+    minLength: 0
+    maxLength: 100
+  city:
+    type: string
+    minLength: 1
+    description: City.
+    maxLength: 100
+    example: Metropolis
+  county:
+    type:
+      - string
+      - 'null'
+    description: County.
+    minLength: 0
+    maxLength: 100
+    example: West Midlands
+  countryCode:
+    type: string
+    minLength: 2
+    description: Country (ISO3166 two-letter code).
+    maxLength: 2
+    pattern: '^[A-Z]'
+    example: GB
+  postcode:
+    type: string
+    description: Postcode.
+    pattern: '^[A-Z]{1,2}[0-9R][0-9A-Z]?\s?[0-9][ABD-HJLNP-UW-Z]{2}$'
+    example: M1 1AA

@@ -1,0 +1,12 @@
+type: string
+title: Party Status
+description: Status of the party.
+enum:
+  - Created
+  - Active
+  - Suspended
+  - Closing
+  - Closed
+example: Active
+x-tags:
+  - Parties

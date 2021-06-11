@@ -1,0 +1,38 @@
+description: Withdrawals are cash transferred out of a portfolio.
+type: object
+title: Withdrawal
+properties:
+  id:
+    type: string
+    minLength: 1
+    description: Unique identifier of the withdrawal.
+    maxLength: 50
+    example: wth-32qm6qal5225qe
+  type:
+    $ref: ./withdrawalType.v1.yaml
+  portfolioId:
+    type: string
+    minLength: 1
+    description: Unique identifier of the portfolio the withdrawal belongs to.
+    example: prt-32q2deogu225ps
+    maxLength: 50
+  bankAccountId:
+    type: string
+    minLength: 1
+    description: Unique identifier of the bank account the withdrawal went to.
+    example: bac-32q2dek3j263q4
+    maxLength: 50
+  consideration:
+    $ref: ../shared/money.v1.yaml
+  reference:
+    type: string
+    minLength: 1
+    description: Reference that accompanied the withdrawal.
+    example: 32Q2DEOGU225PS
+    maxLength: 50
+  status:
+    $ref: ./withdrawalStatus.v1.yaml
+  requestedAt:
+    type: string
+    format: date-time
+    description: Timestamp the withdrawal was requested at.

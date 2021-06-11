@@ -1,0 +1,87 @@
+description: |
+  Describes the movement of cash or holdings to/from a portfolio. Test an additional update. 
+type: object
+title: Transaction
+x-tags:
+  - Transactions
+properties:
+  id:
+    type: string
+    minLength: 1
+    maxLength: 50
+    description: Unique identifier of the transaction.
+    example: txn-32q2m7mwn264vg
+  portfolioId:
+    type: string
+    minLength: 1
+    description: Unique identifier of the portfolio the transaction belongs to.
+    maxLength: 50
+    example: prt-32q2deogu225ps
+  isin:
+    type: string
+    description: 'ISIN of the security, if applicable.'
+    example: GB0030029069
+  type:
+    $ref: ./transactionType.v1.yaml
+  status:
+    $ref: ./transactionStatus.v1.yaml
+  price:
+    oneOf:
+      - $ref: ../shared/money.v1.yaml
+      - type: 'null'
+    description: 'Price paid per unit for transaction, if applicable. Will be `null` if type is not `Buy` or `Sell`.'
+  quantity:
+    type: number
+    description: 'Number of units of the security transferred as part of the transaction, if applicable.'
+    format: double
+  consideration:
+    $ref: ../shared/money.v1.yaml
+  charges:
+    $ref: ../shared/money.v1.yaml
+  date:
+    type: string
+    minLength: 1
+    format: date
+    description: Date of the transaction.
+  timestamp:
+    type: string
+    minLength: 1
+    description: Timestamp the transaction was created at.
+    format: date-time
+  settledOn:
+    type: string
+    minLength: 1
+    format: date
+    description: Date the transaction settled on.
+  updatedAt:
+    type: string
+    minLength: 1
+    description: Timestamp the transaction was updated at.
+    format: date-time
+  bookCost:
+    oneOf:
+      - $ref: ../shared/money.v1.yaml
+      - type: 'null'
+    description: 'Book cost of a transfer in of holdings, if applicable. Will be `null` if type is not `TransferIn`.'
+x-examples:
+  buy-transaction-example:
+    id: txn-32q2m7mwn264vg
+    portfolioId: prt-32q2deogu225ps
+    isin: GB0030029069
+    type: Buy
+    status: Settled
+    price:
+      currency: GBP
+      amount: 0.8628
+    quantity: 91.216
+    consideration:
+      currency: GBP
+      amount: 78.7
+    charges:
+      currency: GBP
+      amount: 0
+    date: '2019-10-08'
+    timestamp: '2019-10-08T13:55:16.4237925Z'
+    settledOn: '2019-10-08'
+    updatedAt: '2019-10-08T13:55:16.4237925Z'
+    bookCost: null

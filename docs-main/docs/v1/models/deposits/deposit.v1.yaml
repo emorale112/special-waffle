@@ -1,0 +1,38 @@
+description: Deposits are cash paid in to portfolios.
+type: object
+title: Deposit
+properties:
+  id:
+    type: string
+    minLength: 1
+    description: Unique identifier of the deposit.
+    maxLength: 50
+    example: dep-32q2deogu225ps
+  portfolioId:
+    type: string
+    minLength: 1
+    description: Unique identifier of the portfolio the deposit belongs to.
+    maxLength: 50
+    example: prt-32q2deogu225ps
+  accountId:
+    type: string
+    minLength: 1
+    description: Unique identifier of the bank account the deposit came from.
+    maxLength: 50
+    example: bac-32q2dek3j263q4
+  consideration:
+    $ref: ../shared/money.v1.yaml
+  reference:
+    type: string
+    minLength: 1
+    description: Reference that accompanied the deposit.
+    maxLength: 50
+    example: 32Q2DEOGU225PS
+  status:
+    $ref: ./depositStatus.v1.yaml
+  createdAt:
+    type: string
+    minLength: 1
+    format: date-time
+    description: Timestamp the deposit was created at.
+    example: '2019-10-08T13:55:16.4237925Z'

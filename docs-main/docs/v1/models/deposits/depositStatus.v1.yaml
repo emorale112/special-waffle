@@ -1,0 +1,10 @@
+type: string
+title: Deposit Status
+description: Status of a Deposit
+enum:
+  - Created
+  - Active
+  - Settled
+  - Cancelled
+  - Rejected
+example: Settled

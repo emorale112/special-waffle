@@ -1,0 +1,11 @@
+title: Reference
+type: object
+description: Unique identifier of the resource created.
+properties:
+  id:
+    type: string
+    description: Unique identifier of the resource created.
+    minLength: 1
+    maxLength: 50
+x-tags:
+  - Common

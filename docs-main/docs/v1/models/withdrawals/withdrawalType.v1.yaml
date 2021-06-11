@@ -1,0 +1,9 @@
+type: string
+title: Withdrawal Type
+description: Type of withdrawal
+example: SpecifiedAmount
+enum:
+  - SpecifiedAmount
+  - Full
+x-examples:
+  withdrawal-type-example: SpecifiedAmount

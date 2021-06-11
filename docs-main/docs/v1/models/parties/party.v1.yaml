@@ -1,0 +1,166 @@
+description: 'Parties contains all the identifying information, address details and bank account details of your customers.'
+type: object
+title: Party
+x-examples:
+  party-example:
+    id: pty-32q2dek2z223q4
+    kycPassed: true
+    clientReference: acb87d62a3
+    status: Active
+    title: Mr
+    forename: Clark
+    middlename: Joseph
+    surname: Kent
+    previousSurname: null
+    emailAddress: email@example.com
+    telephoneNumber: +44 7911123456
+    dateOfBirth: '1938-04-18'
+    dateOfDeath: null
+    countryOfBirth: GB
+    taxResidencies:
+      - countryCode: GB
+        type: NINO
+        value: QQ123456C
+    citizenships:
+      - countryCode: GB
+        type: NINO
+        value: QQ123456C
+    addresses:
+      - id: add-32q2dek3j223q4
+        clientReference: ee4fc6ba50
+        default: true
+        houseName: null
+        houseNumber: '1'
+        line1: Main Street
+        line2: null
+        line3: null
+        city: Metropolis
+        county: null
+        countryCode: GB
+        postcode: M1 1AA
+    bankAccounts:
+      - id: bac-32q2dek3j263q4
+        partyId: pty-32q2dek2z223q4
+        clientReference: 9bc130a98f
+        default: true
+        status: Active
+        verified: true
+        name: MR C KENT
+        number: '12345678'
+        sortCode: 12-34-56
+    createdAt: '2019-10-08T13:55:16.4237925Z'
+x-tags:
+  - Parties
+properties:
+  id:
+    type: string
+    minLength: 1
+    description: Unique identifier of the party.
+    example: pty-32q2dek2z223q4
+  clientReference:
+    type:
+      - string
+      - 'null'
+    description: 'Your unique reference, if applicable.'
+    example: acb87d62a3
+    maxLength: 50
+  status:
+    $ref: ./partyStatus.v1.yaml
+  kycPassed:
+    type: boolean
+    description: Indicates whether this party has passed the required KYC checks.
+  title:
+    type:
+      - string
+      - 'null'
+    minLength: 0
+    description: 'Title of the party (Mr, Mrs...).'
+    maxLength: 10
+    example: Mr
+  forename:
+    type: string
+    minLength: 1
+    maxLength: 50
+    description: Forename of the party.
+    example: Clark
+  middlename:
+    type:
+      - string
+      - 'null'
+    description: 'Middle name of the party, if applicable.'
+    minLength: 0
+    maxLength: 50
+    example: Joseph
+  surname:
+    type: string
+    minLength: 1
+    description: Surname of the party.
+    maxLength: 50
+    example: Kent
+  previousSurname:
+    type:
+      - string
+      - 'null'
+    description: 'Previous surname of the party, if applicable.'
+    maxLength: 50
+  emailAddress:
+    type: string
+    description: Email address of the party.
+    example: email@example.com
+    maxLength: 350
+    minLength: 3
+  telephoneNumber:
+    type:
+      - string
+      - 'null'
+    minLength: 1
+    description: 'Contact telephone number of the party, if applicable.'
+    pattern: '^(\+?)([0-9 ]{11,13})$'
+    example: +44 7911123456
+  dateOfBirth:
+    type: string
+    description: Date of birth of the party.
+    format: date
+    example: '1938-04-18'
+  dateOfDeath:
+    type:
+      - string
+      - 'null'
+    description: Date of death of the party.
+    format: date
+  countryOfBirth:
+    type: string
+    minLength: 2
+    description: Country of birth of the party (ISO3166 two-letter code).
+    maxLength: 2
+    pattern: '^[A-Z]'
+    example: GB
+  taxResidencies:
+    type: array
+    uniqueItems: true
+    description: Tax residencies of the party.
+    items:
+      $ref: ./identifier.v1.yaml
+  citizenships:
+    type: array
+    uniqueItems: true
+    description: Citizenships of the party.
+    items:
+      $ref: ./identifier.v1.yaml
+  addresses:
+    type: array
+    uniqueItems: true
+    description: Known addresses of the party.
+    items:
+      $ref: ./address.v1.yaml
+  bankAccounts:
+    type: array
+    uniqueItems: true
+    description: Known bank accounts of the party.
+    items:
+      $ref: ./bankAccount.v1.yaml
+  createdAt:
+    type: string
+    minLength: 1
+    description: Timestamp party was created at.
+    format: date-time

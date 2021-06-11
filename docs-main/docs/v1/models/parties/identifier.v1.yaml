@@ -1,0 +1,29 @@
+description: Represents an Identifier for a specific Country
+type: object
+title: Identifier
+properties:
+  countryCode:
+    type: string
+    minLength: 2
+    maxLength: 2
+    pattern: '^[A-Z]'
+    example: GB
+    description: Country of citizenship. Must be ISO3166 two-letter country code.
+  type:
+    type: string
+    minLength: 1
+    description: Type of identity document. See the Identification Numbers that we allow in the documentation
+    example: NINO
+  value:
+    type: string
+    minLength: 1
+    description: Value of identity document.
+    maxLength: 50
+    example: QQ123456C
+x-examples:
+  identifier-example:
+    countryCode: GB
+    type: NINO
+    value: QQ123456C
+x-tags:
+  - Parties

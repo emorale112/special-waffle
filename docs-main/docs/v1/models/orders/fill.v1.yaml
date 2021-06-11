@@ -1,0 +1,31 @@
+description: Fill for an Order
+type: object
+title: Fill
+x-examples:
+  fill-example:
+    transactionId: txn-33vf6z35t23fb2
+    price:
+      currency: GBP
+      amount: 100
+    consideration:
+      currency: GBP
+      amount: 100
+    quantity: 1
+    status: Matched
+properties:
+  transactionId:
+    type: string
+    minLength: 1
+    description: Transaction ID of the fill.
+  price:
+    $ref: ../shared/money.v1.yaml
+  consideration:
+    $ref: ../shared/money.v1.yaml
+  quantity:
+    type: number
+    format: double
+    description: Quantity of the fill.
+  status:
+    $ref: ./fillStatus.v1.yaml
+x-tags:
+  - Orders

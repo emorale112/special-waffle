@@ -1,0 +1,65 @@
+description: Model for adding a new Portfolio to a Party
+type: object
+title: Portfolio Definition
+x-examples:
+  portfolio-definition-example:
+    partyId: pty-32q2dek2z223q4
+    clientReference: 5c6759ff36
+    name: Individual Savings Account
+    wrapperType: ISA
+    currency: GBP
+    mandate:
+      type: NullMandate
+x-tags:
+  - Portfolios
+properties:
+  partyId:
+    type: string
+    minLength: 1
+    description: Unique identifier of the party the portfolio belongs to.
+    maxLength: 50
+    example: pty-32q2dek2z223q4
+  clientReference:
+    type:
+      - string
+      - 'null'
+    minLength: 1
+    description: Can be populated with your own reference.
+    maxLength: 50
+    example: 5c6759ff36
+  name:
+    type: string
+    minLength: 1
+    description: Name of the portfolio.
+    maxLength: 100
+    example: General Investment Account
+  wrapperType:
+    $ref: ./portfolioWrapperType.v1.yaml
+  currency:
+    type: string
+    minLength: 3
+    description: Base currency of the portfolio. Must be GBP.
+    enum:
+      - GBP
+    maxLength: 3
+    pattern: '^[A-Z]'
+  mandate:
+    description: Mandate of the portfolio.
+    oneOf:
+      - $ref: ./nullMandate.v1.yaml
+      - $ref: ./executionOnlyMandate.v1.yaml
+      - $ref: ./discretionaryMandate.v1.yaml
+      - $ref: ./singleProductMandate.v1.yaml
+    discriminator:
+      propertyName: type
+      mapping:
+        NullMandate: ./nullMandate.v1.yaml
+        ExecutionOnlyMandate: ./executionOnlyMandate.v1.yaml
+        DiscretionaryMandate: ./discretionaryMandate.v1.yaml
+        SingleProductMandate: ./singleProductMandate.v1.yaml
+required:
+  - partyId
+  - name
+  - wrapperType
+  - currency
+  - mandate

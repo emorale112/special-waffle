@@ -1,0 +1,14 @@
+type: string
+title: Order Status
+description: Status of the Order
+enum:
+  - Pending
+  - Open
+  - Matched
+  - Rejected
+  - Cancelling
+  - Cancelled
+x-examples:
+  order-status-example: Matched
+x-tags:
+  - Orders

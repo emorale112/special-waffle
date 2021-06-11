@@ -1,0 +1,59 @@
+description: Time-weighted performance of a portfolio over time.
+type: object
+title: Performance Interval
+properties:
+  portfolioId:
+    type: string
+    minLength: 1
+    example: prt-33rbgbwny22bfk
+    description: Unique identifier of the portfolio the performance belongs to.
+  startDate:
+    type: string
+    description: Exclusive start date of the interval. The value on this date will not be taken into account.
+    format: date
+    example: '2020-01-01'
+  endDate:
+    type: string
+    description: Inclusive end date of the interval. The value on this date will be taken into account.
+    format: date
+    example: '2020-01-02'
+  startValue:
+    type: number
+    description: Value at beginning of the interval
+    format: double
+    example: 10000
+  endValue:
+    type: number
+    description: Value at the end of the interval
+    format: double
+    example: 10001.46
+  accruedFees:
+    type: number
+    description: Fees accrued over the interval.
+    format: double
+    example: 0.24
+  netPerformance:
+    type: number
+    description: Time weighted net performance over the interval.
+    format: double
+    example: 0.075
+  grossPerformance:
+    type: number
+    description: Time weighted gross performance over the interval.
+    format: double
+    example: 0.08
+  currency:
+    type: string
+    minLength: 3
+    description: 'Currency the performance is in. Applies to `accruedFees`, `startValue` and `endValue`.'
+    maxLength: 3
+    pattern: '^[A-Z]'
+    example: GBP
+  calculatedAt:
+    type: string
+    minLength: 1
+    description: 'Time the interval was calculated at. When the `aggregated` parameter is set to `true`, this will be the max value of `calculatedAt`'
+    format: date-time
+    example: '2020-01-02T12:00:00.12345678Z'
+x-tags:
+  - Performance

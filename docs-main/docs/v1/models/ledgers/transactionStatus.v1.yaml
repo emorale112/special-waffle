@@ -1,0 +1,12 @@
+type: string
+title: Transaction Status
+description: Status of a Transactions
+enum:
+  - Created
+  - Active
+  - Matched
+  - Settled
+  - Cancelled
+  - Failed
+x-examples:
+  transaction-status-example: Settled

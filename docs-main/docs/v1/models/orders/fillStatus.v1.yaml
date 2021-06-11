@@ -1,0 +1,11 @@
+type: string
+title: Fill Status
+description: Status of a Fill
+enum:
+  - Matched
+  - Cancelled
+example: Matched
+x-examples:
+  fill-status-matched: Matched
+x-tags:
+  - Orders

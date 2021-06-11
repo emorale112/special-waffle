@@ -1,0 +1,1821 @@
+openapi: 3.0.0
+info:
+  title: WealthKernel API
+  version: '1.0'
+  description: Get to market faster using our financial services APIs
+  contact:
+    email: support@wealthkernel.com
+    name: Support
+servers:
+  - url: 'https://api.sandbox.wealthkernel.io'
+    description: Sandbox
+  - url: 'https://api.wealthkernel.io'
+    description: Production
+paths:
+  /parties:
+    get:
+      summary: List parties
+      tags:
+        - Parties
+      responses:
+        '200':
+          description: OK
+          headers:
+            Pagination-Last:
+              $ref: parameters/common.v1.yaml#/Pagination-Last
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: ./models/parties/party.v1.yaml
+              examples:
+                list-parties-example:
+                  value:
+                    - clientReference: acb87d62a3
+                      status: Active
+                      title: Mr
+                      forename: Clark
+                      middlename: Joseph
+                      surname: Kent
+                      previousSurname: null
+                      emailAddress: email@example.com
+                      telephoneNumber: +44 7911123456
+                      dateOfBirth: '1938-04-18'
+                      dateOfDeath: null
+                      countryOfBirth: GB
+                      taxResidencies:
+                        - countryCode: GB
+                          type: NINO
+                          value: QQ123456C
+                      citizenships:
+                        - countryCode: GB
+                          type: NINO
+                          value: QQ123456C
+                      addresses:
+                        - id: add-32q2dek3j223q4
+                          clientReference: ee4fc6ba50
+                          default: true
+                          houseName: null
+                          houseNumber: '1'
+                          line1: Main Street
+                          line2: null
+                          line3: null
+                          city: Metropolis
+                          county: null
+                          countryCode: GB
+                          postcode: M1 1AA
+                      bankAccounts:
+                        - id: bac-32q2dek3j263q4
+                          partyId: pty-32q2dek2z223q4
+                          clientReference: 9bc130a98f
+                          default: true
+                          status: Active
+                          verified: true
+                          name: MR C KENT
+                          number: '12345678'
+                          sortCode: 12-34-56
+                      createdAt: '2019-10-08T13:55:16.4237925Z'
+                      id: pty-32q2dek2z223q4
+                      kycPassed: true
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '500':
+          description: Internal Server Error
+      operationId: get-parties
+      description: Returns a list of parties along with associated accounts and addresses.
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: clientReference
+          description: Client reference to filter by.
+        - schema:
+            type: string
+          in: query
+          name: emailAddress
+          description: Email address to filter by.
+        - schema:
+            type: string
+          in: query
+          description: Surname to filter by.
+          name: surname
+        - schema:
+            type: string
+          in: query
+          name: status
+          description: Party status to filter by.
+        - $ref: parameters/common.v1.yaml#/after
+        - $ref: parameters/common.v1.yaml#/limit
+    post:
+      summary: Add a Party
+      operationId: post-parties
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ./models/shared/reference.v1.yaml
+              examples:
+                add-party-response-example:
+                  value:
+                    id: pty-32q2dek2z223q4
+        '400':
+          description: Bad Request
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: ./models/shared/reference.v1.yaml
+              examples:
+                add-party-response-example:
+                  value:
+                    id: pty-32q2dek2z223q4
+        '500':
+          description: Internal Server Error
+      description: Adds a new Party
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: ./models/parties/partyDefinition.v1.yaml
+            examples:
+              add-party-request-example:
+                value:
+                  clientReference: acb87d62a3
+                  title: Mr
+                  forename: Clark
+                  middlename: Joseph
+                  surname: Kent
+                  previousSurname: null
+                  emailAddress: email@example.com
+                  telephoneNumber: +44 7911123456
+                  dateOfBirth: '1938-04-18'
+                  countryOfBirth: GB
+                  taxResidencies:
+                    - countryCode: GB
+                      type: NINO
+                      value: QQ123456C
+                  citizenships:
+                    - countryCode: GB
+                      type: NINO
+                      value: QQ123456C
+                  address:
+                    clientReference: ee4fc6ba50
+                    houseName: null
+                    houseNumber: '1'
+                    line1: Main Street
+                    line2: null
+                    line3: null
+                    city: Metropolis
+                    county: null
+                    countryCode: GB
+                    postcode: M1 1AA
+                  bankAccount:
+                    clientReference: 9bc130a98f
+                    name: MR C KENT
+                    number: '12345678'
+                    sortCode: 12-34-56
+        description: 'In our sandbox environment, you can simulate a party failing its automatic identity check by setting the surname to ''Red'', or simulate an inconclusive identity check requiring further intervention by setting the surname to ''Amber''.'
+      tags:
+        - Parties
+  '/parties/{partyId}':
+    parameters:
+      - schema:
+          type: string
+        name: partyId
+        in: path
+        required: true
+        description: ID of the party
+    get:
+      summary: Retrieve a party
+      tags:
+        - Parties
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ./models/parties/party.v1.yaml
+              examples:
+                get-party-example:
+                  value:
+                    id: pty-32q2dek2z223q4
+                    clientReference: acb87d62a3
+                    status: Active
+                    title: Mr
+                    forename: Clark
+                    middlename: Joseph
+                    surname: Kent
+                    previousSurname: null
+                    emailAddress: email@example.com
+                    telephoneNumber: +44 7911123456
+                    dateOfBirth: '1938-04-18'
+                    dateOfDeath: null
+                    countryOfBirth: GB
+                    kycPassed: true
+                    taxResidencies:
+                      - countryCode: GB
+                        type: NINO
+                        value: QQ123456C
+                    citizenships:
+                      - countryCode: GB
+                        type: NINO
+                        value: QQ123456C
+                    addresses:
+                      - id: add-32q2dek3j223q4
+                        clientReference: ee4fc6ba50
+                        default: true
+                        houseName: null
+                        houseNumber: '1'
+                        line1: Main Street
+                        line2: null
+                        line3: null
+                        city: Metropolis
+                        county: null
+                        countryCode: GB
+                        postcode: M1 1AA
+                    bankAccounts:
+                      - id: bac-32q2dek3j263q4
+                        partyId: pty-32q2dek2z223q4
+                        clientReference: 9bc130a98f
+                        default: true
+                        status: Active
+                        verified: true
+                        name: MR C KENT
+                        number: '12345678'
+                        sortCode: 12-34-56
+                    createdAt: '2019-10-08T13:55:16.4237925Z'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '500':
+          description: Internal Server Error
+      operationId: get-parties-partyId
+      description: Returns a single party.
+    patch:
+      summary: Update a party
+      operationId: patch-parties-partyId
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ./models/parties/partyPatchDefinition.v1.yaml
+              examples:
+                patch-party-example:
+                  value:
+                    clientReference: zyx12w48z7
+                    title: Mr
+                    forename: Clark
+                    middlename: Joseph
+                    surname: Kent
+                    previousSurname: Kal-El
+                    emailAddress: email@example.com
+                    telephoneNumber: +44 7911123456
+                    dateOfBirth: '1938-04-18'
+                    dateOfDeath: '1992-11-21'
+                    countryOfBirth: GB
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '500':
+          description: Internal Server Error
+      description: |-
+        Patches a party's details.
+
+        Passing a null value for a field is treated the same as not passing a value, so the field will not be updated.
+      tags:
+        - Parties
+  '/parties/{partyId}/addresses':
+    parameters:
+      - schema:
+          type: string
+        name: partyId
+        in: path
+        required: true
+        description: ID of the Party
+    post:
+      summary: Add party address
+      operationId: post-parties-partyId-addresses
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ./models/shared/reference.v1.yaml
+              examples:
+                add-address-response-example:
+                  value:
+                    id: add-32q4kgb7c222n6
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '500':
+          description: Internal Server Error
+      description: Add a new address to a party.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: ./models/parties/addressDefinition.v1.yaml
+            examples:
+              add-address-request-example:
+                value:
+                  clientReference: 5ac94f4d98
+                  houseName: Kent Farm
+                  houseNumber: '1'
+                  line1: Road Lane
+                  line2: null
+                  line3: null
+                  city: Smallville
+                  county: null
+                  countryCode: GB
+                  postcode: S1 1AA
+        description: ''
+      tags:
+        - Parties
+    get:
+      summary: List party addresses
+      operationId: get-parties-partyId-addresses
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: ./models/parties/address.v1.yaml
+              examples:
+                list-addresses-response-example:
+                  value:
+                    - id: add-32q2dek3j223q4
+                      clientReference: ee4fc6ba50
+                      default: true
+                      houseName: Kent Farm
+                      houseNumber: '1'
+                      line1: Main Street
+                      line2: null
+                      line3: null
+                      city: Metropolis
+                      county: null
+                      countryCode: GB
+                      postcode: M1 1AA
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '500':
+          description: Internal Server Error
+      description: Returns all addresses for a party.
+      tags:
+        - Parties
+  '/parties/{partyId}/addresses/{addressId}':
+    parameters:
+      - schema:
+          type: string
+        name: partyId
+        in: path
+        required: true
+        description: ID of the Party the address belongs to
+      - schema:
+          type: string
+        name: addressId
+        in: path
+        required: true
+        description: ID of the Address
+    get:
+      summary: Retrieve party address
+      tags:
+        - Parties
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ./models/parties/address.v1.yaml
+              examples:
+                retrieve-address-response-example:
+                  value:
+                    id: add-32q2dek3j223q4
+                    clientReference: ee4fc6ba50
+                    default: true
+                    houseName: Kent Farm
+                    houseNumber: '1'
+                    line1: Main Street
+                    line2: null
+                    line3: null
+                    city: Metropolis
+                    county: null
+                    countryCode: GB
+                    postcode: M1 1AA
+          headers:
+            test_hiding_things:
+              schema:
+                type: string
+              description: 'try it again '
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '500':
+          description: Internal Server Error
+      operationId: get-parties-partyId-addresses-addressId
+      description: Returns a party's address.
+  '/parties/{partyId}/accounts':
+    parameters:
+      - schema:
+          type: string
+        name: partyId
+        in: path
+        required: true
+        description: ID of the Party
+    get:
+      summary: List party accounts
+      tags:
+        - Parties
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: ./models/parties/bankAccount.v1.yaml
+              examples:
+                list-party-accounts-example:
+                  value:
+                    - id: bac-32q2dek3j263q4
+                      partyId: pty-32q2dek2z223q4
+                      clientReference: 9bc130a98f
+                      default: true
+                      status: Active
+                      verified: true
+                      name: MR C KENT
+                      number: '12345678'
+                      sortCode: 12-34-56
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '500':
+          description: Internal Server Error
+      operationId: get-parties-partyId-accounts
+      description: Returns all bank accounts for a party.
+    post:
+      summary: Add party account
+      operationId: post-parties-partyId-accounts
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ./models/shared/reference.v1.yaml
+              examples:
+                add-party-account-response-example:
+                  value:
+                    id: bac-32q4kgb7d222n6
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '500':
+          description: Internal Server Error
+      tags:
+        - Parties
+      description: |-
+        Add a new bank account to a party.
+
+        In our sandbox environment, you can simulate a failed bank account verification check by setting the sort code to '00-00-00', or simulate an inconclusive bank account verification check requiring further intervention by setting the sort code to '00-00-01'.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: ./models/parties/bankAccountDefinition.v1.yaml
+            examples:
+              add-party-account-request-example:
+                value:
+                  clientReference: 1944a59713
+                  name: C Kent & L Lane
+                  number: '87654321'
+                  sortCode: 65-43-21
+        description: ''
+  '/parties/{partyId}/accounts/{bankAccountId}':
+    parameters:
+      - schema:
+          type: string
+        name: partyId
+        in: path
+        required: true
+        description: ID of the Party the Account belongs to
+      - schema:
+          type: string
+        name: bankAccountId
+        in: path
+        required: true
+        description: ID of the Bank Account
+    get:
+      summary: Retrieve party account
+      tags:
+        - Parties
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ./models/parties/bankAccount.v1.yaml
+              examples:
+                retrieve-party-account-response-example:
+                  value:
+                    id: bac-32q2dek3j263q4
+                    partyId: pty-32q2dek2z223q4
+                    clientReference: 9bc130a98f
+                    default: true
+                    status: Active
+                    verified: true
+                    name: MR C KENT
+                    number: '12345678'
+                    sortCode: 12-34-56
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '500':
+          description: Internal Server Error
+      operationId: get-parties-partyId-accounts-bankAccountId
+      description: Returns a party's bank account.
+  '/parties/{partyId}/citizenships/{countryCode}':
+    parameters:
+      - schema:
+          type: string
+        name: partyId
+        in: path
+        required: true
+        description: ID of the Party you are updating
+      - schema:
+          type: string
+        name: countryCode
+        in: path
+        required: true
+        description: ID of the Citizenship to add or update
+    put:
+      summary: Add or update party citizenship
+      operationId: put-parties-partyId-citizenships-countryCode
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ./models/shared/reference.v1.yaml
+              examples:
+                add-or-update-citizenship-response-example:
+                  value:
+                    id: NL
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '500':
+          description: Internal Server Error
+      description: Adds or updates a party's citizenship.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: ./models/parties/identifier.v1.yaml
+            examples:
+              add-or-update-citizenship-request-example:
+                value:
+                  countryCode: GB
+                  type: NINO
+                  value: QQ123456C
+        description: ''
+      tags:
+        - Parties
+  /portfolios:
+    get:
+      summary: List portfolios
+      tags:
+        - Portfolios
+      responses:
+        '200':
+          description: OK
+          headers:
+            Pagination-Last:
+              $ref: parameters/common.v1.yaml#/Pagination-Last
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: ./models/portfolios/portfolio.v1.yaml
+              examples:
+                list-portfolios-response-example:
+                  value:
+                    - id: prt-32q2deogu225ps
+                      partyId: pty-32q2dek2z223q4
+                      clientReference: 5c6759ff36
+                      name: General Investment Account
+                      status: Created
+                      wrapperType: GIA
+                      currency: GBP
+                      mandate:
+                        type: NullMandate
+                      createdAt: '2019-10-08T13:55:16.4237925Z'
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '500':
+          description: Internal Server Error
+      operationId: get-portfolios
+      description: Returns a list of portfolios.
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: partyId
+          description: Unique identifier of the party to filter by.
+        - schema:
+            type: string
+          in: query
+          name: clientReference
+          description: Client reference to filter by.
+        - schema:
+            type: string
+          in: query
+          name: wrapperType
+          description: Wrapper type to filter by.
+        - schema:
+            type: string
+          in: query
+          name: currency
+          description: Currency to filter by.
+        - schema:
+            type: string
+          in: query
+          name: status
+          description: Portfolio status to filter by.
+        - $ref: parameters/common.v1.yaml#/after
+        - $ref: parameters/common.v1.yaml#/limit
+    post:
+      summary: Add a portfolio
+      operationId: post-portfolios
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ./models/shared/reference.v1.yaml
+              examples:
+                add-portfolio-response-example:
+                  value:
+                    id: prt-32q2deogu225ps
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '500':
+          description: Internal Server Error
+      description: Adds a new portfolio.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: ./models/portfolios/portfolioDefinition.v1.yaml
+            examples:
+              add-portfolio-request-example:
+                value:
+                  partyId: pty-32q2dek2z223q4
+                  clientReference: 5c6759ff36
+                  name: General Investment Account
+                  wrapperType: GIA
+                  currency: GBP
+                  mandate:
+                    type: NullMandate
+        description: ''
+      tags:
+        - Portfolios
+  '/portfolios/{portfolioId}':
+    parameters:
+      - schema:
+          type: string
+        name: portfolioId
+        in: path
+        required: true
+        description: ID of the Portfolio
+    get:
+      summary: Retrieve a portfolio
+      tags:
+        - Portfolios
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ./models/portfolios/portfolio.v1.yaml
+              examples:
+                retrieve-portfolio-response-example:
+                  value:
+                    id: prt-32q2deogu225ps
+                    partyId: pty-32q2dek2z223q4
+                    clientReference: 5c6759ff36
+                    name: General Investment Account
+                    status: Created
+                    wrapperType: GIA
+                    currency: GBP
+                    mandate:
+                      type: NullMandate
+                    createdAt: '2019-10-08T13:55:16.4237925Z'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '500':
+          description: Internal Server Error
+      operationId: get-portfolios-portfolioId
+      description: Returns a portfolio.
+  '/portfolios/{portfolioId}/mandate':
+    parameters:
+      - schema:
+          type: string
+        name: portfolioId
+        in: path
+        required: true
+        description: ID of the Portfolio
+    put:
+      summary: Change mandate
+      operationId: put-portfolios-portfolioId-mandate
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '500':
+          description: Internal Server Error
+      description: Changes a portfolio's mandate.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              oneOf:
+                - $ref: ./models/portfolios/nullMandate.v1.yaml
+                - $ref: ./models/portfolios/executionOnlyMandate.v1.yaml
+                - $ref: ./models/portfolios/discretionaryMandate.v1.yaml
+                - $ref: ./models/portfolios/singleProductMandate.v1.yaml
+              discriminator:
+                propertyName: type
+                mapping:
+                  NullMandate: ./models/portfolios/nullMandate.v1.yaml
+                  ExecutionOnlyMandate: ./models/portfolios/executionOnlyMandate.v1.yaml
+                  DiscretionaryMandate: ./models/portfolios/discretionaryMandate.v1.yaml
+                  SingleProductMandate: ./models/portfolios/singleProductMandate.v1.yaml
+      tags:
+        - Portfolios
+  /models:
+    get:
+      summary: List models
+      tags:
+        - Models
+      responses:
+        '200':
+          description: OK
+          headers:
+            Pagination-Last:
+              $ref: parameters/common.v1.yaml#/Pagination-Last
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: ./models/models/model.v1.yaml
+              examples:
+                list-models-response-example:
+                  value:
+                    - id: mdl-1
+                      name: Conservative Model
+                      description: Mostly bonds
+                      components:
+                        - isin: IE00B95W7137
+                          weight: 0.75
+                        - isin: GB00BZ82ZT69
+                          weight: 0.25
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '500':
+          description: Internal Server Error
+      operationId: get-models
+      description: Returns a list of models.
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: id
+          description: Unique identifier of the model.
+        - schema:
+            type: string
+          in: query
+          name: clientReference
+          description: 'Your unique reference, if applicable.'
+        - $ref: parameters/common.v1.yaml#/after
+        - $ref: parameters/common.v1.yaml#/limit
+        - schema:
+            type: string
+          in: header
+          name: test_update
+  '/models/{modelId}':
+    parameters:
+      - schema:
+          type: string
+        name: modelId
+        in: path
+        required: true
+        description: ID of the model to retrieve
+    get:
+      summary: Retrieve a model
+      tags:
+        - Models
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ./models/models/model.v1.yaml
+              examples:
+                retrieve-model-response-example:
+                  value:
+                    id: mdl-1
+                    name: Conservative Model
+                    description: Mostly bonds
+                    components:
+                      - isin: IE00B95W7137
+                        weight: 0.75
+                      - isin: GB00BZ82ZT69
+                        weight: 0.25
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '500':
+          description: Internal Server Error
+      operationId: get-models-modelId
+      description: Returns a model.
+  /valuations:
+    get:
+      summary: List valuations
+      tags:
+        - Valuations
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: ./models/valuations/valuation.v1.yaml
+              examples:
+                list-valuations-response-example:
+                  value:
+                    - portfolioId: prt-32q2deogu225ps
+                      date: '2019-10-08'
+                      value:
+                        currency: GBP
+                        amount: 87.87
+                      cash:
+                        - currency: GBP
+                          value:
+                            currency: GBP
+                            amount: 9.17
+                          amount:
+                            currency: GBP
+                            amount: 9.17
+                          fxRate: 1
+                      holdings:
+                        - isin: GB0030029069
+                          quantity: 91.216
+                          price:
+                            currency: GBP
+                            amount: 0.8628
+                          value:
+                            currency: GBP
+                            amount: 78.7
+                          fxRate: 1
+                      changedAt: '2019-10-08T13:55:42.37925Z'
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '500':
+          description: Internal Server Error
+      operationId: get-valuations
+      description: Returns a list of valuations.
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: portfolioId
+          description: Unique identifier of the portfolio to query.
+        - schema:
+            type: string
+            format: date
+          in: query
+          description: Start date to query from.
+          name: startDate
+        - schema:
+            type: string
+            format: date
+          in: query
+          description: End date to query to.
+          name: endDate
+  /performance:
+    get:
+      summary: List performance
+      tags:
+        - Performance
+      responses:
+        '200':
+          description: OK
+          headers:
+            Pagination-Last:
+              $ref: parameters/common.v1.yaml#/Pagination-Last
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: ./models/performance/performanceInterval.v1.yaml
+              examples:
+                list-performance-response-example:
+                  value:
+                    - portfolioId: prt-33rbgbwny22bfk
+                      startDate: '2020-01-01'
+                      endDate: '2020-01-02'
+                      startValue: 10000
+                      endValue: 10001.46
+                      accruedFees: 0.24
+                      netPerformance: 0.075
+                      grossPerformance: 0.08
+                      currency: GBP
+                      calculatedAt: '2020-01-02T12:00:00.12345678Z'
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '500':
+          description: Internal Server Error
+      operationId: get-performance
+      description: Returns performance intervals as a time series or an aggregated interval.
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: portfolioId
+          description: Unique identifier of the portfolio to filter by.
+        - schema:
+            type: string
+            format: date
+          in: query
+          name: startDate
+          description: Filter for performance ending on or after this date.
+        - schema:
+            type: string
+            format: date
+          in: query
+          name: endDate
+          description: Filter for performance ending on or before this date.
+        - schema:
+            type: boolean
+          in: query
+          name: aggregate
+          description: 'When set to `true`, performance will be aggregated into a single interval per portfolio.'
+        - $ref: parameters/common.v1.yaml#/after
+        - $ref: parameters/common.v1.yaml#/limit
+  /transactions:
+    get:
+      summary: List transactions
+      tags:
+        - Transactions
+      responses:
+        '200':
+          description: OK
+          headers:
+            Pagination-Last:
+              $ref: parameters/common.v1.yaml#/Pagination-Last
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: ./models/ledgers/transaction.v1.yaml
+              examples:
+                list-transaction-response-example:
+                  value:
+                    - portfolioId: prt-32q2deogu225ps
+                      isin: GB0030029069
+                      type: Buy
+                      status: Settled
+                      price:
+                        currency: GBP
+                        amount: 0.8628
+                      quantity: 91.216
+                      consideration:
+                        currency: GBP
+                        amount: 78.7
+                      charges:
+                        currency: GBP
+                        amount: 0
+                      date: '2019-10-08'
+                      timestamp: '2019-10-08T13:55:16.4237925Z'
+                      settledOn: '2019-10-08'
+                      updatedAt: '2019-10-08T13:55:16.4237925Z'
+                      bookCost: null
+                      id: txn-32q2m7mwn264vg
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '500':
+          description: Internal Server Error
+      operationId: get-transactions
+      description: 'Returns a list of transactions. Adding more to the main branch. '
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: portfolioId
+          description: Unique identifier of the portfolio to filter by.
+        - schema:
+            type: string
+            format: date
+          in: query
+          name: startDate
+          description: Start date to filter from.
+        - schema:
+            type: string
+            format: date
+          in: query
+          name: endDate
+          description: End date to filter to.
+        - schema:
+            type: string
+          in: query
+          name: isin
+          description: ISIN to filter by.
+        - schema:
+            type: string
+          in: query
+          name: type
+          description: Transaction type to filter by.
+        - schema:
+            type: string
+          in: query
+          name: status
+          description: Transaction status to filter by.
+        - schema:
+            type: string
+            format: date-time
+          in: query
+          name: updatedSince
+          description: Updated since date to filter from.
+        - schema:
+            type: string
+            format: date
+          in: query
+          name: settledOn
+          description: Settled on date to filter by.
+        - $ref: parameters/common.v1.yaml#/after
+        - $ref: parameters/common.v1.yaml#/limit
+    parameters: []
+  '/transactions/{transactionId}':
+    parameters:
+      - schema:
+          type: string
+        name: transactionId
+        in: path
+        required: true
+        description: ID of the transaction to retrieve
+    get:
+      summary: Retrieve a transaction
+      tags:
+        - Transactions
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ./models/ledgers/transaction.v1.yaml
+              examples:
+                retrieve-transaction-response-example:
+                  value:
+                    portfolioId: prt-32q2deogu225ps
+                    isin: GB0030029069
+                    type: Buy
+                    status: Settled
+                    price:
+                      currency: GBP
+                      amount: 0.8628
+                    quantity: 91.216
+                    consideration:
+                      currency: GBP
+                      amount: 78.7
+                    charges:
+                      currency: GBP
+                      amount: 0
+                    date: '2019-10-08'
+                    timestamp: '2019-10-08T13:55:16.4237925Z'
+                    settledOn: '2019-10-08'
+                    updatedAt: '2019-10-08T13:55:16.4237925Z'
+                    bookCost: null
+                    id: txn-32q2m7mwn264vg
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '500':
+          description: Internal Server Error
+      operationId: get-transactions-transactionId
+      description: Returns a transaction.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                email:
+                  type: string
+        description: A request body
+  /orders:
+    get:
+      summary: List orders
+      tags:
+        - Orders
+      responses:
+        '200':
+          description: OK
+          headers:
+            Pagination-Last:
+              $ref: parameters/common.v1.yaml#/Pagination-Last
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: ./models/orders/order.v1.yaml
+              examples:
+                list-orders-response-example:
+                  value:
+                    - id: ord-32q2dek3j263q4
+                      clientReference: 4783sghdsk483
+                      portfolioId: prt-32q2deogu225ps
+                      isin: GB0030029069
+                      settlementCurrency: GBP
+                      side: Buy
+                      consideration:
+                        currency: GBP
+                        amount: 2000
+                      status: Matched
+                      reason: null
+                      receivedAt: '2019-10-08T13:55:16.4237925Z'
+                      fills:
+                        - transactionId: txn-33vf6z35t23fb2
+                          price:
+                            currency: GBP
+                            amount: 100
+                          consideration:
+                            currency: GBP
+                            amount: 100
+                          quantity: 1
+                          status: Matched
+        '201':
+          description: Created
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '500':
+          description: Internal Server Error
+      operationId: get-orders
+      description: Returns a list of orders.
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: portfolioId
+          description: Unique identifier of the portfolio to filter by.
+        - schema:
+            type: string
+          in: query
+          name: clientReference
+          description: Client reference to filter by.
+        - schema:
+            type: string
+          in: query
+          name: side
+          description: Side to filter by.
+        - schema:
+            type: string
+          in: query
+          name: status
+          description: Status to filter by.
+        - $ref: parameters/common.v1.yaml#/after
+        - $ref: parameters/common.v1.yaml#/limit
+    post:
+      summary: Create an Order
+      operationId: post-orders
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ./models/shared/reference.v1.yaml
+              examples:
+                create-order-response-example:
+                  value:
+                    id: 45g6kvz9u439b1
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '409':
+          description: Conflict
+        '500':
+          description: Internal Server Error
+      description: Creates a new Order.
+      tags:
+        - Orders
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: ./models/orders/orderDefinition.v1.yaml
+            examples:
+              create-order-buy-request-example:
+                value:
+                  clientReference: 4783sghdsk483
+                  portfolioId: prt-32q2deogu225ps
+                  isin: GB0030029069
+                  settlementCurrency: GBP
+                  side: Buy
+                  consideration:
+                    currency: GBP
+                    amount: 2000
+              create-order-sell-request-example:
+                value:
+                  clientReference: 3674gsdsbh265
+                  portfolioId: prt-32q2deogu225ps
+                  isin: GB0030029069
+                  settlementCurrency: GBP
+                  side: Sell
+                  quantity: 5
+      parameters:
+        - $ref: parameters/common.v1.yaml#/Idempotency-Key
+  '/orders/{orderId}':
+    parameters:
+      - schema:
+          type: string
+        name: orderId
+        in: path
+        required: true
+        description: ID of the Order
+    get:
+      summary: Retrieve an Order
+      tags:
+        - Orders
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ./models/orders/order.v1.yaml
+              examples:
+                retrieve-order-response-example:
+                  value:
+                    id: ord-32q2dek3j263q4
+                    clientReference: 4783sghdsk483
+                    portfolioId: prt-32q2deogu225ps
+                    isin: GB0030029069
+                    settlementCurrency: GBP
+                    side: Buy
+                    consideration:
+                      currency: GBP
+                      amount: 2000
+                    status: Matched
+                    reason: null
+                    receivedAt: '2019-10-08T13:55:16.4237925Z'
+                    fills:
+                      - transactionId: txn-33vf6z35t23fb2
+                        price:
+                          currency: GBP
+                          amount: 100
+                        consideration:
+                          currency: GBP
+                          amount: 100
+                        quantity: 1
+                        status: Matched
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '500':
+          description: Internal Server Error
+      operationId: get-orders-orderId
+      description: Returns an order.
+  '/models/{orderId}/actions/cancel':
+    parameters:
+      - schema:
+          type: string
+        name: orderId
+        in: path
+        required: true
+        description: ID of an Order to cancel
+    post:
+      summary: Cancel an Order
+      operationId: post-models-orderId-actions-cancel
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ./models/shared/reference.v1.yaml
+              examples:
+                cancel-order-response-example:
+                  value:
+                    id: ord-32q2dek3j263q4
+      description: Cancels an existing Order.
+      tags:
+        - Orders
+  /deposits:
+    get:
+      summary: List deposits
+      tags:
+        - Deposits
+      responses:
+        '200':
+          description: OK
+          headers:
+            Pagination-Last:
+              schema:
+                type: string
+              description: Will be set in the response if there are further results and should be used as the next request's after value.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: ./models/deposits/deposit.v1.yaml
+              examples:
+                list-deposits-response-example:
+                  value:
+                    - id: dep-32q2dfyjd2263u
+                      portfolioId: prt-32q2deogu225ps
+                      accountId: bac-32q2dek3j263q4
+                      consideration:
+                        currency: GBP
+                        amount: 2000
+                      reference: 32Q2DEOGU225PS
+                      status: Settled
+                      createdAt: '2019-10-08T13:55:16.4237925Z'
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '500':
+          description: Internal Server Error
+      operationId: get-deposits
+      description: Returns a list of deposits.
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: portfolioId
+          description: Unique identifier of the portfolio to filter by.
+        - schema:
+            type: string
+          in: query
+          name: reference
+          description: Reference to filter by.
+        - schema:
+            type: string
+            format: date
+          in: query
+          name: startDate
+          description: Filter for deposits created on or after this date.
+        - schema:
+            type: string
+            format: date
+          in: query
+          name: endDate
+          description: Filter for deposits created on or before this date.
+        - schema:
+            type: string
+          in: query
+          name: status
+          description: Deposit status to filter by.
+        - $ref: parameters/common.v1.yaml#/after
+        - $ref: parameters/common.v1.yaml#/limit
+    post:
+      summary: Create a deposit
+      operationId: post-deposits
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ./models/shared/reference.v1.yaml
+              examples:
+                create-deposit-response-example:
+                  value:
+                    id: dep-32q2dfyjd2263u
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '409':
+          description: Conflict
+        '500':
+          description: Internal Server Error
+      description: |-
+        Creates a new deposit.
+
+        <!-- theme: warning -->
+        > Please note `accountId` will be ignored when `useDefaultAccount` is set to true.
+      parameters:
+        - $ref: parameters/common.v1.yaml#/Idempotency-Key
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: ./models/deposits/depositDefinition.v1.yaml
+            examples:
+              create-deposit-request-example:
+                value:
+                  portfolioId: prt-32q2deogu225ps
+                  useDefaultAccount: false
+                  accountId: bac-32q2dek3j263q4
+                  consideration:
+                    currency: GBP
+                    amount: 2000
+                  reference: 32Q2DEOGU225PS
+        description: ''
+      tags:
+        - Deposits
+  '/deposits/{depositId}':
+    parameters:
+      - schema:
+          type: string
+        name: depositId
+        in: path
+        required: true
+        description: ID of the Deposit
+    get:
+      summary: Retrieve a deposit
+      tags:
+        - Deposits
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ./models/deposits/deposit.v1.yaml
+              examples:
+                retrieve-deposit-example:
+                  value:
+                    id: dep-32q2dfyjd2263u
+                    portfolioId: prt-32q2deogu225ps
+                    accountId: bac-32q2dek3j263q4
+                    consideration:
+                      currency: GBP
+                      amount: 2000
+                    reference: 32Q2DEOGU225PS
+                    status: Settled
+                    createdAt: '2019-10-08T13:55:16.4237925Z'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '500':
+          description: Internal Server Error
+      operationId: get-deposits-depositId
+      description: Returns a deposit.
+  '/deposits/{depositId}/actions/cancel':
+    parameters:
+      - schema:
+          type: string
+        name: depositId
+        in: path
+        required: true
+        description: ID of the Deposit to cancel
+    post:
+      summary: Cancel a deposit
+      tags:
+        - Deposits
+      operationId: post-deposits-depositId-actions-cancel
+      responses:
+        '200':
+          description: OK
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '500':
+          description: Internal Server Error
+      description: Cancels a deposit.
+  /withdrawals:
+    get:
+      summary: List withdrawals
+      tags:
+        - Withdrawals
+      responses:
+        '200':
+          description: OK
+          headers:
+            Pagination-Last:
+              $ref: parameters/common.v1.yaml#/Pagination-Last
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: ./models/withdrawals/withdrawal.v1.yaml
+              examples:
+                list-withdrawals-response-example:
+                  value:
+                    - type: SpecifiedAmount
+                      portfolioId: prt-32q2deogu225ps
+                      bankAccountId: bac-32q2dek3j263q4
+                      consideration:
+                        currency: GBP
+                        amount: 100
+                      reference: 32Q2DEOGU225PS
+                      status: Settled
+                      requestedAt: '2019-10-08T13:55:16.4237925Z'
+                      id: wth-32qm6qal5225qe
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '500':
+          description: Internal Server Error
+      operationId: get-withdrawals
+      description: Returns a list of withdrawals.
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: portfolioId
+          description: Unique identifier of the portfolio to filter by.
+        - schema:
+            type: string
+          in: query
+          name: type
+          description: Withdrawal type to filter by.
+        - schema:
+            type: string
+          in: query
+          name: reference
+          description: Reference to filter by.
+        - schema:
+            type: string
+          in: query
+          name: status
+          description: Withdrawal status to filter by.
+        - $ref: parameters/common.v1.yaml#/after
+        - $ref: parameters/common.v1.yaml#/limit
+    post:
+      summary: Request a withdrawal
+      operationId: post-withdrawals
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ./models/shared/reference.v1.yaml
+              examples:
+                request-withdrawal-response-example:
+                  value:
+                    id: wth-32qm6qal5225qe
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '409':
+          description: Conflict
+        '500':
+          description: Internal Server Error
+      description: |-
+        Requests a new withdrawal.
+
+        <!-- theme: warning -->
+
+        > The withdrawal will be rejected if there is already a withdrawal ongoing for the specified portfolio, if there is not enough money in the portfolio, or if the party or bank account are not active.
+      parameters:
+        - $ref: parameters/common.v1.yaml#/Idempotency-Key
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: ./models/withdrawals/withdrawalDefinition.v1.yaml
+            examples:
+              request-withdrawal-request-example:
+                value:
+                  type: SpecifiedAmount
+                  portfolioId: prt-32q2deogu225ps
+                  bankAccountId: bac-32q2dek3j263q4
+                  consideration:
+                    currency: GBP
+                    amount: 1.14
+                  reference: 32Q2DEOGU225PS
+      tags:
+        - Withdrawals
+  '/withdrawal/{withdrawalId}':
+    parameters:
+      - schema:
+          type: string
+        name: withdrawalId
+        in: path
+        required: true
+        description: ID of the withdrawal to retrieve
+    get:
+      summary: Retrieve a withdrawal
+      tags:
+        - Withdrawals
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ./models/withdrawals/withdrawal.v1.yaml
+              examples:
+                retrieve-withdrawal-response-example:
+                  value:
+                    type: SpecifiedAmount
+                    portfolioId: prt-32q2deogu225ps
+                    bankAccountId: bac-32q2dek3j263q4
+                    consideration:
+                      currency: GBP
+                      amount: 100
+                    reference: 32Q2DEOGU225PS
+                    status: Settled
+                    requestedAt: '2019-10-08T13:55:16.4237925Z'
+                    id: wth-32qm6qal5225qe
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '500':
+          description: Internal Server Error
+      operationId: get-withdrawal-withdrawalId
+      description: Returns a withdrawal.
+components:
+  schemas: {}
+  securitySchemes:
+    Sandbox:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: 'https://auth.sandbox.wealthkernel.io/connect/token'
+          refreshUrl: ''
+          scopes: {}
+      description: Sandbox OAuth Server
+    Production:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: 'https://auth.wealthkernel.io/connect/token'
+          refreshUrl: ''
+          scopes: {}
+      description: Production OAuth Server
+  parameters:
+    my_query_param:
+      name: my_query_param
+      in: query
+      schema:
+        type: array
+      style: pipeDelimited
+      description: Here is my query parameter description
+      explode: false
+tags:
+  - name: Parties
+  - name: Portfolios
+  - name: Models
+  - name: Valuations
+  - name: Performance
+  - name: Transactions
+  - name: Orders
+  - name: Deposits
+  - name: Withdrawals
+  - name: Common

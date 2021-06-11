@@ -1,0 +1,11 @@
+type: string
+title: Portfolio Wrapper Type
+description: Represents the type of a Portfolio
+x-examples:
+  gia-example: GIA
+example: GIA
+enum:
+  - GIA
+  - ISA
+x-tags:
+  - Portfolios

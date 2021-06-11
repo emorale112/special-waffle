@@ -1,0 +1,102 @@
+description: Model for adding a new Party
+type: object
+title: Party Definition
+properties:
+  clientReference:
+    type:
+      - string
+      - 'null'
+    minLength: 1
+    description: Can be populated with your own reference.
+    maxLength: 50
+    example: acb87d62a3
+  title:
+    type:
+      - string
+      - 'null'
+    minLength: 1
+    maxLength: 10
+    description: Mr
+    example: Mr
+  forename:
+    type: string
+    maxLength: 50
+    minLength: 1
+    description: Forename of the party.
+    example: Clark
+  middlename:
+    type:
+      - string
+      - 'null'
+    description: 'Middle name of the party, if applicable.'
+    maxLength: 50
+    minLength: 1
+    example: Joseph
+  surname:
+    type: string
+    minLength: 1
+    description: Surname of the party.
+    maxLength: 50
+    example: Kent
+  previousSurname:
+    type:
+      - string
+      - 'null'
+    description: 'Previous surname of the party, if applicable.'
+    minLength: 1
+    maxLength: 50
+    example: Kal-El
+  emailAddress:
+    type: string
+    minLength: 1
+    description: Email address of the party.
+    maxLength: 350
+    example: email@example.com
+  telephoneNumber:
+    type:
+      - string
+      - 'null'
+    minLength: 1
+    description: 'Contact telephone number of the party, if applicable.'
+    pattern: '^(\+?)([0-9 ]{11,13})$'
+    example: +44 7700123456
+  dateOfBirth:
+    type: string
+    description: Date of birth of the party. Party must be over the age of 18.
+    format: date
+    example: '1938-04-18'
+  countryOfBirth:
+    type: string
+    description: Country of birth of the party. Must be ISO3166 two-letter country code.
+    minLength: 2
+    maxLength: 2
+    pattern: '^[A-Z]'
+    example: GB
+  taxResidencies:
+    type: array
+    uniqueItems: true
+    minItems: 1
+    description: Tax residencies of the party. At least one must be UK national insurance.
+    items:
+      $ref: ./identifier.v1.yaml
+  citizenships:
+    type: array
+    uniqueItems: true
+    minItems: 1
+    description: Citizenships of the party.
+    items:
+      $ref: ./identifier.v1.yaml
+  address:
+    $ref: ./addressDefinition.v1.yaml
+  bankAccount:
+    $ref: ./bankAccountDefinition.v1.yaml
+required:
+  - forename
+  - surname
+  - emailAddress
+  - dateOfBirth
+  - countryOfBirth
+  - taxResidencies
+  - citizenships
+  - address
+  - bankAccount

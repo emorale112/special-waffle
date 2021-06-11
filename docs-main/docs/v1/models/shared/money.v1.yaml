@@ -1,0 +1,25 @@
+title: Money
+type: object
+description: 'Model for an amount of money, with a currency and value'
+properties:
+  currency:
+    type: string
+    description: Currency of the money. Must be an ISO 4217 Currency Code.
+    example: GBP
+    minLength: 3
+    maxLength: 3
+    pattern: '^[A-Z]'
+  amount:
+    type: number
+    format: double
+    example: 1.14
+    description: Amount of the money.
+required:
+  - currency
+  - amount
+x-examples:
+  money-gbp-example:
+    currency: GBP
+    amount: 1.14
+x-tags:
+  - Common

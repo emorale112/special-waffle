@@ -1,0 +1,61 @@
+description: Definition to create a new order
+type: object
+properties:
+  clientReference:
+    type: string
+    minLength: 1
+    description: We recommend this should be populated with your own client order id.
+  portfolioId:
+    type: string
+    minLength: 1
+    description: Unique identifier of the portfolio the order belongs to.
+    maxLength: 50
+  isin:
+    type: string
+    minLength: 1
+    description: ISIN for the order
+  settlementCurrency:
+    type: string
+    minLength: 3
+    description: Currency for the order to be settled in. Currently only supports `GBP`.
+    maxLength: 3
+    pattern: '^[A-Z]'
+  side:
+    $ref: ./orderSide.v1.yaml
+  quantity:
+    type:
+      - number
+      - 'null'
+    format: double
+    description: Amount of a security to purchase. Must be set if `consideration` is not supplied. Must not have more than 4 decimal places.
+  consideration:
+    oneOf:
+      - $ref: ../shared/money.v1.yaml
+      - type: 'null'
+        properties: {}
+    description: Amount of money the order is for. Must be set if `quantity` is not supplied. `Amount` should have not more than 2 decimal places. Currency currently only support `GBP`.
+required:
+  - portfolioId
+  - isin
+  - settlementCurrency
+  - side
+title: Order Definition
+x-examples:
+  buy-consideration-order-definition-example:
+    clientReference: 4783sghdsk483
+    portfolioId: prt-32q2deogu225ps
+    isin: GB0030029069
+    settlementCurrency: GBP
+    side: Buy
+    consideration:
+      currency: GBP
+      amount: 2000
+  sell-quantity-order-definition-example:
+    clientReference: 3674gsdsbh265
+    portfolioId: prt-32q2deogu225ps
+    isin: GB0030029069
+    settlementCurrency: GBP
+    side: Sell
+    quantity: 5
+x-tags:
+  - Orders

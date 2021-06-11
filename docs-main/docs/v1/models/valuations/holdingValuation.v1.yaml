@@ -1,0 +1,35 @@
+description: Holding portion of a Valuation
+type: object
+title: Holding Valuation
+properties:
+  isin:
+    type: string
+  quantity:
+    type: number
+    format: double
+  price:
+    $ref: ../shared/money.v1.yaml
+  value:
+    $ref: ../shared/money.v1.yaml
+  fxRate:
+    type: number
+    format: double
+required:
+  - isin
+  - quantity
+  - price
+  - value
+  - fxRate
+x-examples:
+  holding-valuation-example:
+    isin: GB0030029069
+    quantity: 91.216
+    price:
+      currency: GBP
+      amount: 0.8628
+    value:
+      currency: GBP
+      amount: 78.7
+    fxRate: 1
+x-tags:
+  - Valuations

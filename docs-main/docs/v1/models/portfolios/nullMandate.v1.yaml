@@ -1,0 +1,15 @@
+title: Null Mandate
+type: object
+description: Represents a Null Mandate
+x-examples:
+  null-mandate-example:
+    type: NullMandate
+properties:
+  type:
+    type: string
+    description: Type of portfolio mandate. Must be NullMandate.
+    example: NullMandate
+    enum:
+      - NullMandate
+x-tags:
+  - Portfolios
