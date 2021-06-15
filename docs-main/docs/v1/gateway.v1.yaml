@@ -111,6 +111,7 @@ paths:
           description: Party status to filter by.
         - $ref: parameters/common.v1.yaml#/after
         - $ref: parameters/common.v1.yaml#/limit
+      x-internal: true
     post:
       summary: Add a Party
       operationId: post-parties
