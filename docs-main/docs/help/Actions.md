@@ -1,5 +1,8 @@
 # Actions
 
+![discord-avatar-512-42CAU.png](https://stoplight.io/api/v1/projects/cHJqOjY3NDU2/images/ZNkYZpxKHkI)
+
+
 Some resources have actions that can be applied to them, which have the following pattern.
 
 `POST https://api.staging.wealthkernel.io/{resource}/{resource-id}/actions/{action}`
