@@ -1,6 +1,6 @@
 {
   "exclude": [
-    "hide_this"
+    "hide_this.yaml"
   ],
   "formats": {
     "openapi": {
