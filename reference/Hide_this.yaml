@@ -90,6 +90,7 @@ paths:
                   lastName: Baker
                   dateOfBirth: '1985-10-02'
         description: Patch user properties to update.
+      x-internal: true
   /user:
     post:
       summary: Create New User
