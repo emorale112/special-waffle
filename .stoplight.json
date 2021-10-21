@@ -1,6 +1,6 @@
 {
   "exclude": [
-    "hide_this.yaml",
+    "users",
   ],
   "formats": {
     "openapi": {

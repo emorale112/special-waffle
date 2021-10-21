@@ -37,7 +37,7 @@ paths:
           description: User Not Found
       operationId: get-users-userId
       description: Retrieve the information of the user with the matching user ID.
-      x-internal: true
+      x-internal: false
     patch:
       summary: Update User Information
       operationId: patch-users-userId
