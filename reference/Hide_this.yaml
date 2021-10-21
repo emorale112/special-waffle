@@ -189,3 +189,9 @@ components:
         - email
         - emailVerified
       x-internal: true
+    blue:
+      title: blue
+      type: object
+      properties:
+        id:
+          type: string
