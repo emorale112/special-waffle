@@ -1,0 +1,237 @@
+{
+  "items": [
+    {
+      "type": "item",
+      "title": "My-Article",
+      "uri": "docs/My-Article.md"
+    },
+    {
+      "type": "divider",
+      "title": "APIS"
+    },
+    {
+      "type": "item",
+      "title": "WealthKernel API",
+      "uri": "docs-main/docs/v1/gateway.v1.yaml"
+    },
+    {
+      "type": "item",
+      "title": "Hide_this.yaml",
+      "uri": "reference/Hide_this.yaml"
+    },
+    {
+      "type": "divider",
+      "title": "Schemas"
+    },
+    {
+      "type": "item",
+      "title": "Address",
+      "uri": "docs-main/docs/v1/models/parties/address.v1.yaml"
+    },
+    {
+      "type": "item",
+      "title": "Address Definition",
+      "uri": "docs-main/docs/v1/models/parties/addressDefinition.v1.yaml"
+    },
+    {
+      "type": "item",
+      "title": "Bank Account",
+      "uri": "docs-main/docs/v1/models/parties/bankAccount.v1.yaml"
+    },
+    {
+      "type": "item",
+      "title": "Bank Account Definition",
+      "uri": "docs-main/docs/v1/models/parties/bankAccountDefinition.v1.yaml"
+    },
+    {
+      "type": "item",
+      "title": "Bank Account Status",
+      "uri": "docs-main/docs/v1/models/parties/bankAccountStatus.v1.yaml"
+    },
+    {
+      "type": "item",
+      "title": "Cash Valuation",
+      "uri": "docs-main/docs/v1/models/valuations/cashValuation.v1.yaml"
+    },
+    {
+      "type": "item",
+      "title": "Deposit",
+      "uri": "docs-main/docs/v1/models/deposits/deposit.v1.yaml"
+    },
+    {
+      "type": "item",
+      "title": "Deposit Definition",
+      "uri": "docs-main/docs/v1/models/deposits/depositDefinition.v1.yaml"
+    },
+    {
+      "type": "item",
+      "title": "Deposit Status",
+      "uri": "docs-main/docs/v1/models/deposits/depositStatus.v1.yaml"
+    },
+    {
+      "type": "item",
+      "title": "Discretionary Mandate",
+      "uri": "docs-main/docs/v1/models/portfolios/discretionaryMandate.v1.yaml"
+    },
+    {
+      "type": "item",
+      "title": "Execution Only Mandate",
+      "uri": "docs-main/docs/v1/models/portfolios/executionOnlyMandate.v1.yaml"
+    },
+    {
+      "type": "item",
+      "title": "Fill",
+      "uri": "docs-main/docs/v1/models/orders/fill.v1.yaml"
+    },
+    {
+      "type": "item",
+      "title": "Fill Status",
+      "uri": "docs-main/docs/v1/models/orders/fillStatus.v1.yaml"
+    },
+    {
+      "type": "item",
+      "title": "Holding Valuation",
+      "uri": "docs-main/docs/v1/models/valuations/holdingValuation.v1.yaml"
+    },
+    {
+      "type": "item",
+      "title": "Identifier",
+      "uri": "docs-main/docs/v1/models/parties/identifier.v1.yaml"
+    },
+    {
+      "type": "item",
+      "title": "Model",
+      "uri": "docs-main/docs/v1/models/models/model.v1.yaml"
+    },
+    {
+      "type": "item",
+      "title": "Model Component",
+      "uri": "docs-main/docs/v1/models/models/modelComponent.v1.yaml"
+    },
+    {
+      "type": "item",
+      "title": "Money",
+      "uri": "docs-main/docs/v1/models/shared/money.v1.yaml"
+    },
+    {
+      "type": "item",
+      "title": "Null Mandate",
+      "uri": "docs-main/docs/v1/models/portfolios/nullMandate.v1.yaml"
+    },
+    {
+      "type": "item",
+      "title": "Order",
+      "uri": "docs-main/docs/v1/models/orders/order.v1.yaml"
+    },
+    {
+      "type": "item",
+      "title": "Order Definition",
+      "uri": "docs-main/docs/v1/models/orders/orderDefinition.v1.yaml"
+    },
+    {
+      "type": "item",
+      "title": "Order Side",
+      "uri": "docs-main/docs/v1/models/orders/orderSide.v1.yaml"
+    },
+    {
+      "type": "item",
+      "title": "Order Status",
+      "uri": "docs-main/docs/v1/models/orders/orderStatus.v1.yaml"
+    },
+    {
+      "type": "item",
+      "title": "Party",
+      "uri": "docs-main/docs/v1/models/parties/party.v1.yaml"
+    },
+    {
+      "type": "item",
+      "title": "Party Definition",
+      "uri": "docs-main/docs/v1/models/parties/partyDefinition.v1.yaml"
+    },
+    {
+      "type": "item",
+      "title": "Party Patch Definition",
+      "uri": "docs-main/docs/v1/models/parties/partyPatchDefinition.v1.yaml"
+    },
+    {
+      "type": "item",
+      "title": "Party Status",
+      "uri": "docs-main/docs/v1/models/parties/partyStatus.v1.yaml"
+    },
+    {
+      "type": "item",
+      "title": "Performance Interval",
+      "uri": "docs-main/docs/v1/models/performance/performanceInterval.v1.yaml"
+    },
+    {
+      "type": "item",
+      "title": "Portfolio",
+      "uri": "docs-main/docs/v1/models/portfolios/portfolio.v1.yaml"
+    },
+    {
+      "type": "item",
+      "title": "Portfolio Definition",
+      "uri": "docs-main/docs/v1/models/portfolios/portfolioDefinition.v1.yaml"
+    },
+    {
+      "type": "item",
+      "title": "Portfolio Status",
+      "uri": "docs-main/docs/v1/models/portfolios/portfolioStatus.v1.yaml"
+    },
+    {
+      "type": "item",
+      "title": "Portfolio Wrapper Type",
+      "uri": "docs-main/docs/v1/models/portfolios/portfolioWrapperType.v1.yaml"
+    },
+    {
+      "type": "item",
+      "title": "Reference",
+      "uri": "docs-main/docs/v1/models/shared/reference.v1.yaml"
+    },
+    {
+      "type": "item",
+      "title": "Single Product Mandate",
+      "uri": "docs-main/docs/v1/models/portfolios/singleProductMandate.v1.yaml"
+    },
+    {
+      "type": "item",
+      "title": "Transaction",
+      "uri": "docs-main/docs/v1/models/ledgers/transaction.v1.yaml"
+    },
+    {
+      "type": "item",
+      "title": "Transaction Status",
+      "uri": "docs-main/docs/v1/models/ledgers/transactionStatus.v1.yaml"
+    },
+    {
+      "type": "item",
+      "title": "Transaction Type",
+      "uri": "docs-main/docs/v1/models/ledgers/transactionType.v1.yaml"
+    },
+    {
+      "type": "item",
+      "title": "Valuation",
+      "uri": "docs-main/docs/v1/models/valuations/valuation.v1.yaml"
+    },
+    {
+      "type": "item",
+      "title": "Withdrawal",
+      "uri": "docs-main/docs/v1/models/withdrawals/withdrawal.v1.yaml"
+    },
+    {
+      "type": "item",
+      "title": "Withdrawal Definition",
+      "uri": "docs-main/docs/v1/models/withdrawals/withdrawalDefinition.v1.yaml"
+    },
+    {
+      "type": "item",
+      "title": "Withdrawal Status",
+      "uri": "docs-main/docs/v1/models/withdrawals/withdrawalStatus.v1.yaml"
+    },
+    {
+      "type": "item",
+      "title": "Withdrawal Type",
+      "uri": "docs-main/docs/v1/models/withdrawals/withdrawalType.v1.yaml"
+    }
+  ]
+}
